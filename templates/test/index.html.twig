@@ -1,0 +1,306 @@
+{% extends 'dashboard.html.twig' %}
+
+
+{% block body %}
+	<!-- ======================= Start Dashboard ===================== -->
+		<section class="dashboard gray-bg padd-0 mrg-top-50">
+			<div class="container-fluid">
+				<div class="row">
+					
+					<div class="col-lg-2 col-md-2 col-sm-3 dashboard-bg">
+						<!-- /. NAV TOP  -->
+							<nav class="navbar navbar-side">
+							<!-- Start Logo Header Navigation -->
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dashboard-menu">
+									<i class="fa fa-bars"></i>
+								</button>
+
+							</div>
+							<h5>Connected since :<td>{{ a }}</td></h5>
+							<div class="collapse sidebar-collapse" id="dashboard-menu">
+								<div class="profile-wrapper">
+									<div class="profile-wrapper-thumb">
+									     {% set userpic = app.user.picture %}
+										 {% set username = app.user.name %}
+										 {% set lastname = app.user.lastname %}
+										<img src="{{ asset('uploads/' ~ userpic) }}" class="img-responsive img-circle" alt="" />
+										<span class="dashboard-user-status bg-success"></span>
+									</div>
+									<h4>{{username}} {{lastname}}</h4>
+								</div>
+								<ul class="nav" id="main-menu">
+									
+									<li class="active">
+										<a href="{{path('app_test')}}"><i class="fa fa-dashboard" aria-hidden="true"></i>Dashboard</a>
+									</li>
+									
+									<li>
+										<a href="messages.html"><i class="ti-email" aria-hidden="true"></i>Messages</a>
+									</li>
+									
+									<li>
+										<a href="javascript:void(0)"><i class="fa fa-clone" aria-hidden="true"></i>Manage Listing <span class="fa arrow"></span></a>
+										<ul class="nav nav-second-level">
+											
+											<li>
+												<a href="manage-hotels.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Manage Hotels</a>
+											</li>
+											<li>
+												<a href="manage-tours.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Manage Tours</a>
+											</li>
+										   <li>
+												<a href="manage-destinations.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Manage Destinations</a>
+											</li>
+											<li>
+												<a href="manage-restaurants.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Manage Restaurants</a>
+											</li>
+										</ul>
+									</li>
+									
+									<li>
+										<a href="javascript:void(0)"><i class="ti-location-pin" aria-hidden="true"></i>Add Listings <span class="fa arrow"></span></a>
+										<ul class="nav nav-second-level">
+											
+											<li>
+												<a href="http://themezhub.com/"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Add Hotels</a>
+											</li>
+											<li>
+												<a href="add-tours.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Add Tours</a>
+											</li>
+										   <li>
+												<a href="add-destinations.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Add Destinations</a>
+											</li>
+											<li>
+												<a href="add-restaurants.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Add Restaurants</a>
+											</li>
+										</ul>
+									</li>
+									
+									<li>
+										<a href="invoice.html"><i class="fa-print" aria-hidden="true"></i>Invoice</a>
+									</li>
+									
+									<li>
+										<a href="javascript:void(0)"><i class="ti-calendar" aria-hidden="true"></i>My Booking <span class="fa arrow"></span></a>
+										<ul class="nav nav-second-level">
+											<li>
+												<a href="booking-1.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Booking 1</a>
+											</li>
+											<li>
+												<a href="booking-2.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Booking 2</a>
+											</li>
+										</ul>
+									</li>
+									
+									<li>
+										<a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>Settings <span class="fa arrow"></span></a>
+										<ul class="nav nav-second-level">
+											<li>
+												<a href="basic-settings.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Basic Settings</a>
+											</li>
+											<li>
+												<a href="site-settings.html"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Site Settings</a>
+											</li>
+										</ul>
+									</li>
+									
+									<li>
+										<a href="my-profile.html"><i class="ti-user" aria-hidden="true"></i>My Profile</a>
+									</li>
+									
+									<li>
+										<a href="add-payment-methode.html"><i class="ti-credit-card" aria-hidden="true"></i>Add Payment Methode</a>
+									</li>
+									
+									<li class="log-off">
+										<a href="login.html"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+						<!-- /. NAV SIDE  -->
+					</div>
+					
+					<div class="col-lg-10 col-md-10 col-sm-9 col-lg-push-2 col-md-push-2 col-sm-push-3">
+						<div class="row mrg-0 mrg-top-20">
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h3 class="dashboard-title">Dashboard</h3>
+								</div>
+								<div class="tr-single-body">
+								<!-- Single Guide -->
+								<form method="get" action="{{ path('app_test') }}">
+    <input type="text" class="form-control height-50" id="search" value="{{ search}}"  placeholder="Search Here" name="search">
+<label for="search_by">Search By:</label>
+    <select class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="search_by" name="search_by">
+        {% for column in searchColumns %}
+            <option value="{{ column }}" {% if column == selectedSearchColumn %}selected{% endif %}>
+                {{ column }}
+            </option>
+        {% endfor %}
+    </select>
+    <label for="sort_by">Sort By:</label>
+    <select class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="sort_by" name="sort_by">
+        {% for column in sortColumns %}
+            <option value="{{ column }}" {% if column == selectedSortColumn %}selected{% endif %}>
+                {{ column }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="sort_order">Sort Order:</label>
+    <select class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="sort_order" name="sort_order">
+        <option value="asc" {% if 'asc' == selectedSortOrder %}selected{% endif %}>Ascending</option>
+        <option value="desc" {% if 'desc' == selectedSortOrder %}selected{% endif %}>Descending</option>
+    </select>
+
+    <button type="submit" >Apply</button>
+</form>
+								<div class="row">
+								<h1 class="text-center mb-4">List of Users</h1>
+								{% for user in users %}
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="guide-container">
+							<div class="guide-container-box">
+								<div class="fguide-thumb">
+									<img src="{{ asset('uploads/' ~ user.picture) }}" class="img-responsive img-circle" alt="">
+								</div>
+								<div class="fguide-detail">
+									<h4>{{ user.name }} {{ user.lastname }}</h4>
+									<ul class="extra-service">
+										<li>
+											<div class="icon-box-icon-block">																								
+													<div class="icon-box-text">
+														<strong>Birthday</strong>
+														{{ user.dateofbirth|date('Y-m-d ') }}
+													</div>												
+											</div>
+										</li>
+										
+										<li>
+											<div class="icon-box-icon-block">																								
+													<div class="icon-box-text">
+														<strong>Phone</strong>
+														{{ user.numT }}
+													</div>												
+											</div>
+										</li>
+										
+										<li>
+											<div class="icon-box-icon-block">																								
+													<div class="icon-box-text">
+														<strong>email</strong>
+														{{ user.email }}
+													</div>
+											</div>
+										</li>
+
+										<li>
+											<div class="icon-box-icon-block">																								
+													<div class="icon-box-text">
+														<strong>Created At</strong>
+														{{ user.createdat|date('Y-m-d ') }}
+													</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="guide-container-links">
+							    <a class="btn btn-default" data-toggle="modal" data-target="#editModal{{ user.id }}"><i class="ti-user mrg-r-5"></i>Edit User</a>
+								<a href="{{path('app_show',{'id':user.id})}}" class="btn btn-default"><i class="ti-user mrg-r-5"></i>View Profile</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					</div>
+					<!-- Single Guide -->
+								
+								<fieldset>
+    <br><br><br>
+	
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h1 class="text-center mb-4">Birthday Users</h1>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in user %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdat|date('Y-m-d H:i:s') }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#editModal{{ user.id }}">Edit</button>
+									
+									<a href="{{path('deleteuser',{'id':user.id})}}" class="btn btn-danger" >delete</a>
+								
+									<a href="{{path('app_show',{'id':user.id})}}" class="btn btn-danger" >show</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+{% for user in users %}
+   <div class="modal fade" id="editModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ user.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel{{ user.id }}">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form action="{{ path('edituser', {'id': user.id}) }}" method="post">
+                    <label for="editUsername">name:</label>
+                    <input type="text" id="editUsername{{ user.id }}" name="editUsername" value="{{ user.name }}" class="form-control">
+
+					<label for="editLastname">Phone:</label>
+                    <input type="text" id="editLastname{{ user.id }}" name="editLastname" value="{{ user.lastname }}" class="form-control">
+
+					<label for="editPhone">Phone:</label>
+                    <input type="text" id="editPhone{{ user.id }}" name="editPhone" value="{{ user.numT }}" class="form-control">
+
+					<label for="editDate">Date Of Birth:</label>
+                    <input type="date" id="editDate{{ user.id }}" name="editDate" value="{{ user.dateofbirth|date('Y-m-d') }}" class="form-control">
+
+					<label for="editPassword">Password:</label>
+                    <input type="text" id="editPassword{{ user.id }}" name="editPassword"  class="form-control">
+
+                    <label for="editEmail">Email:</label>
+                    <input type="text" id="editEmail{{ user.id }}" name="editEmail" value="{{ user.email }}" class="form-control">
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+	 
+{% endfor %}
+		</section>
+		
+		<!-- ======================= End Dashboard ===================== -->
+	
+{% endblock %}
+

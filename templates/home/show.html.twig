@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section 
+					<div>
+						<div class="row mrg-0 mrg-top-20">
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h3 class="dashboard-title">My Profile</h3>
+								</div>
+								<div class="tr-single-body">
+									<div class="row">
+										<!-- col-md-4 -->
+										<div class="col-md-4">
+											<p>
+												<label>First Name</label>
+												<input type="text" id="firstname" class="form-control" value="{{user.name}}" name="firstname">
+											</p>
+
+											<p>
+												<label>Last Name</label>
+												<input type="text" id="secondname" class="form-control" value="{{user.lastname}}" name="firstname">
+											</p>
+
+                                            <p>
+												<label>Birthday</label>
+												<input type="type" id="secondname" class="form-control" value="{{user.dateofbirth|date('Y-m-d')}}" name="firstname">
+											</p>
+
+											<p>
+												<label>Email</label>
+												<input type="text" id="useremail" class="form-control" value="{{user.email}}" name="useremail">
+											</p>
+									
+											   
+											
+										</div>
+										<!-- /col-md-4 -->
+										
+										<!-- col-md-4 -->
+										<div class="col-md-4">
+											<p>
+												<label>Phone</label>
+												<input type="text" id="userphone" class="form-control" value="{{user.numT}}" name="userphone">
+											</p>
+
+                                            <p>
+												<label>Created At</label>
+												<input type="text" id="secondname" class="form-control" value="{{user.createdat|date('Y-m-d')}}" name="firstname">
+											</p>
+											<br><br>
+											<a href="{{path('app_home')}}" class="btn theme-btn full-width" >Close</a>
+										    
+										</div>
+										<!-- /col-md-4 -->
+										
+										<!-- col-md-4 -->
+										<div class="col-md-4">
+											<div id="profile-div" class="feature-media-upload">
+												{% set userpic = app.user.picture %}
+												<img id="profile-image" class="img-responsive" src="{{ asset('uploads/' ~ userpic) }}" alt="user image">
+												<div id="upload-container">                 
+													<div id="aaiu-upload-container" style="position: relative;">
+													<form  action="{{ path('editpic', {'id': user.id}) }}" method="post" enctype="multipart/form-data">
+                    <input type="file" id="editPicture{{ user.id }}" name="editPicture"  class="form-control">
+
+
+    <button type="submit" class="btn theme-btn full-width">Upload Image</button>
+</form>
+													 
+													</div>
+													
+											   
+												</div>
+											</div>
+										</div> 
+										<!-- /col-md-4 -->
+										
+									</div>
+								</div>
+							</div>
+					
+					
+				</div>
+			</div>
+			
+		</section>
+{% endblock %}                        

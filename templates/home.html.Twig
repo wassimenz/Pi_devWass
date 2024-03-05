@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Odysse{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <!-- Plugins CSS -->
+	<link rel="stylesheet" href="{{asset('assets/plugins/css/plugins.css')}}">	
+    
+    <!-- Custom style -->
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/responsiveness.css')}}" rel="stylesheet"><link id="jssDefault" rel="stylesheet" href="{{asset('assets/css/skins/default.css')}}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <!-- =================== START JAVASCRIPT ================== -->
+		<script src="{{asset('assets/plugins/js/jquery.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/viewportchecker.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/bootsnav.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/slick.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/jquery.nice-select.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/jquery.fancybox.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/jquery.downCount.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/freshslider.1.0.0.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/moment.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/daterangepicker.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/wysihtml5-0.3.0.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/bootstrap-wysihtml5.js')}}"></script>
+		
+		<!-- Dashboard Js -->
+		<script src="{{asset('assets/plugins/js/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/jquery.metisMenu.js')}}"></script>
+		<script src="{{asset('assets/plugins/js/jquery.easing.min.js')}}"></script>
+ 
+		<!-- Custom Js -->
+		<script src="{{asset('assets/js/custom.js')}}"></script>
+		
+		<script>
+			$(function() {
+
+			  $('input[name="book-date"]').daterangepicker({
+				  autoUpdateInput: false,
+				  locale: {
+					  cancelLabel: 'Clear'
+				  }
+			  });
+
+			  $('input[name="book-date"]').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			  });
+
+			  $('input[name="book-date"]').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			  });
+
+			});
+		</script>
+		
+		<script src="{{asset('assets/js/jQuery.style.switcher.js')}}"></script>
+		<script>
+			function openRightMenu() {
+				document.getElementById("rightMenu").style.display = "block";
+			}
+			function closeRightMenu() {
+				document.getElementById("rightMenu").style.display = "none";
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#styleOptions').styleSwitcher();
+			});
+		</script>
+        {% endblock %}
+    </head>
+    <body>
+    <!-- ======================= Start Navigation ===================== -->
+		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+			<div class="container">
+			
+				<!-- Start Logo Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a href="{{path('app_home')}}" class="navbar-brand" href="index-2.html">
+						<img src="assets/img/logo.png" class="logo logo-display" alt="">
+						<img src="assets/img/logo.png" class="logo logo-scrolled" alt="">
+					</a>
+
+				</div>
+				<!-- End Logo Header Navigation -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+				
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+					
+						<li><a href="{{path('app_home')}}">Home </a></li>
+					
+						<li class="dropdown megamenu-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Brows</a>
+							<ul class="dropdown-menu megamenu-content" role="menu">
+								<li>
+									<div class="row">
+										<div class="col-menu col-md-3">
+											<h6 class="title">Destinations</h6>
+											<div class="content">
+												<ul class="menu-col">
+													<li><a href="destination-grid.html">Destination Grid</a></li>
+													<li><a href="destination-list.html">Destination List</a></li>
+													<li><a href="destination-grid-sidebar.html">Destination Grid Sidebar</a></li>
+													<li><a href="destination-list-sidebar.html">Destination List Sidebar</a></li>
+													<li><a href="destination-detail.html">Destination Detail</a></li>
+												</ul>
+											</div>
+										</div><!-- end col-3 -->
+										<div class="col-menu col-md-3">
+											<h6 class="title">Tours</h6>
+											<div class="content">
+												<ul class="menu-col">
+													<li><a href="tour-grid.html">Tour Grid</a></li>
+													<li><a href="tour-list.html">Tour List</a></li>
+													<li><a href="tour-grid-sidebar.html">Tour Grid Sidebar</a></li>
+													<li><a href="tour-list-sidebar.html">tour List Sidebar</a></li>
+													<li><a href="tour-detail.html">Tour Detail</a></li>
+												</ul>
+											</div>
+										</div><!-- end col-3 -->
+										<div class="col-menu col-md-3">
+											<h6 class="title">Hotels</h6>
+											<div class="content">
+												<ul class="menu-col">
+													<li><a href="hotel-grid.html">Hotel Grid</a></li>
+													<li><a href="hotel-list.html">Hotel List</a></li>
+													<li><a href="hotel-grid-sidebar.html">Hotel Grid Sidebar</a></li>
+													<li><a href="hotel-list-sidebar.html">Hotel List Sidebar</a></li>
+													<li><a href="hotel-detail.html">Hotel Detail</a></li>
+												</ul>
+											</div>
+										</div>    
+										<div class="col-menu col-md-3">
+											<h6 class="title">Restaurants</h6>
+											<div class="content">
+												<ul class="menu-col">
+													<li><a href="restaurant-grid.html">Restaurant Grid</a></li>
+													<li><a href="restaurant-list.html">Restaurant List</a></li>
+													<li><a href="restaurant-grid-sidebar.html">Restaurant Grid Sidebar</a></li>
+													<li><a href="restaurant-list-sidebar.html">Restaurant List Sidebar</a></li>
+													<li><a href="restaurant-detail.html">Restaurant Detail</a></li>
+												</ul>
+											</div>
+										</div><!-- end col-3 -->
+									</div><!-- end row -->
+								</li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="hire-guider.html">Find Guide</a>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Extra</a>
+							<ul class="dropdown-menu animated fadeOutUp">
+								<li><a href="cart.html">Add To Cart</a></li>
+								<li><a href="payment-methode.html">Paayment Methode</a></li>
+								<li><a href="success-page.html">Success Page</a></li>
+								<li><a href="coming-soon.html">Coming Soon</a></li>
+								<li><a href="about-us.html">About Us</a></li>
+								<li><a href="pricing.html">Pricing</a></li>
+								<li><a href="services.html">Services</a></li>
+								<li class="dropdown"><a href="#">View More</a>
+									<ul class="dropdown-menu">
+										<li><a href="blog.html">Blog</a></li>
+										<li><a href="faqs.html">FAQs</a></li>
+										<li><a href="#">LogIn</a></li>
+										<li><a href="signup.html">SignUp</a></li>
+										<li><a href="contact.html">Contact</a></li>
+										<li><a href="icons.html">icons</a></li>
+										<li><a href="404.html">404</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="{{path('app_test')}}">Dashboard</a>
+						</li>
+						
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+					 {% set userpic = app.user.picture %}
+					 {% set username = app.user.name %}
+						<li class="dropdown dash-link"><a href="#" class="dropdown-toggle"> <img src="{{ asset('uploads/' ~ userpic) }}" class="img-responsive avatar" alt="" />Hi, {{username}}</a> 
+							<ul class="dropdown-menu left-nav">
+							{% set userId = app.user.id %}
+							    
+								
+								<li><a href="{{path('app_test')}}">Dashboard</a></li>
+								<li><a href="{{path('app_show',{'id': userId})}}">My Profile</a></li>
+								<li><a href="{{path('app_logout')}}">Log Out</a></li>
+							</ul>
+						</li>
+					</ul>
+						
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>  
+		</nav>
+    
+        {% block body %}
+        {% endblock %}
+         <!-- ================= footer start ========================= -->
+		<footer class="footer dark-bg">
+			<div class="container">
+				
+				<!-- Row Start -->
+				<div class="row">
+				
+					<div class="col-md-8 col-sm-8">
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<h4>Featured Destinations</h4>
+								<ul>
+									<li><a href="destination-grid.html">Destination Grid</a></li>
+									<li><a href="destination-list.html">Destination List</a></li>
+									<li><a href="destination-grid-sidebar.html">Destination Grid Sidebar</a></li>
+									<li><a href="destination-list-sidebar.html">Destination List Sidebar</a></li>
+									<li><a href="destination-detail.html">Destination Detail</a></li>
+									<li><a href="restaurant-grid.html">Restaurant Grid</a></li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<h4>Featured Tours</h4>
+								<ul>
+									<li><a href="tour-grid.html">Tour Grid</a></li>
+									<li><a href="tour-list.html">Tour List</a></li>
+									<li><a href="tour-grid-sidebar.html">Tour Grid Sidebar</a></li>
+									<li><a href="tour-list-sidebar.html">tour List Sidebar</a></li>
+									<li><a href="tour-detail.html">Tour Detail</a></li>
+									<li><a href="http://themezhub.com/">Restaurant Grid</a></li>
+								</ul>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<h4>Featured Hotels</h4>
+								<ul>
+									<li><a href="hotel-grid.html">Hotel Grid</a></li>
+									<li><a href="hotel-list.html">Hotel List</a></li>
+									<li><a href="hotel-grid-sidebar.html">Hotel Grid Sidebar</a></li>
+									<li><a href="hotel-list-sidebar.html">Hotel List Sidebar</a></li>
+									<li><a href="hotel-detail.html">Hotel Detail</a></li>
+									<li><a href="restaurant-detail.html">Restaurant Detail</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<h4>Subscribe Now</h4>
+						<!-- Newsletter -->
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Enter Email">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><i class="fa fa-location-arrow font-20"></i></button>
+							</span>
+						</div>
+						
+						<!-- Social Box -->
+						<div class="f-social-box">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook facebook-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-google google-plus-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter twitter-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-pinterest pinterest-cl"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram instagram-cl"></i></a></li>
+							</ul>
+						</div>
+						
+						<!-- App Links -->
+						<div class="f-app-box">
+							<ul>
+								<li><a href="#"><i class="fa fa-apple"></i>App Store</a></li>
+								<li><a href="#"><i class="fa fa-android"></i>Play Store</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<!-- Row Start -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="copyright text-center">
+							<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</footer>
+    </body>
+   
+</html>
